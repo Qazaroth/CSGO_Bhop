@@ -1,24 +1,28 @@
 #include <iostream>
-#include "Core/Window.h"
+#include "graphics/Window.h"
 
 const unsigned int WIDTH = 1600;
 const unsigned int HEIGHT = 900;
 
 int main()
 {
-	Window window;
-	window.create(WIDTH, HEIGHT, "CSGO BHop Engine");
+	using namespace Graphics;
 
-	while (!glfwWindowShouldClose(window.getWindow()))
+	Window window("CSGO Bhop", WIDTH, HEIGHT);
+	glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
+
+	while (!window.closed())
 	{
-		//window.clear();
-		//window.render();
+		window.clear();
 
-		glfwPollEvents();
+		glBegin(GL_TRIANGLES);
+		glVertex2f(-0.5f, -0.5f);
+		glVertex2f(-0.5f, 0.5f);
+		glVertex2f(0.5f, 0.5f);
+		//glVertex2f(0.5f, -0.5f);
+		glEnd();
+
+		window.update();
 	}
-
-	//window.dispose();
-
-	std::cout << "Hello World!" << std::endl;
 	return 0;
 }
